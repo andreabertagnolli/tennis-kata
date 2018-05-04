@@ -70,4 +70,16 @@ public class GameTest {
 
         assertThat(game.scoring(), is("Player Two WINS"));
     }
+
+    @Test
+    void deuce() {
+        game.playerOneScores();
+        game.playerOneScores();
+        game.playerOneScores();
+        game.playerTwoScores();
+        game.playerTwoScores();
+        game.playerTwoScores();
+
+        assertThat(game.scoring(), is("DEUCE"));
+    }
 }

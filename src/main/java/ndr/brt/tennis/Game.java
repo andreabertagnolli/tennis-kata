@@ -8,6 +8,8 @@ public class Game {
     public String scoring() {
         if (winner != null) {
             return winner;
+        } else if (playerOne.isForty() && playerTwo.isForty()) {
+            return "DEUCE";
         }
         else {
             return String.format("%d - %d", playerOne.points(), playerTwo.points());
