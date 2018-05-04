@@ -1,18 +1,18 @@
 package ndr.brt.tennis;
 
 public class Game {
-    private String playerOne = "0";
-    private String playerTwo = "0";
+    private int playerOne = 0;
+    private int playerTwo = 0;
 
     public String scoring() {
-        return String.format("%s - %s", playerOne, playerTwo);
+        return String.format("%d - %d", playerOne, playerTwo);
     }
 
     public void playerOneScores() {
-        playerOne = "15";
+        playerOne += 15;
     }
 
     public void playerTwoScores() {
-        playerTwo = "15";
+        playerTwo = 15;
     }
 }

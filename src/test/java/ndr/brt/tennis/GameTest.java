@@ -1,5 +1,6 @@
 package ndr.brt.tennis;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -7,16 +8,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GameTest {
 
+    private Game game;
+
+    @BeforeEach
+    void setUp() {
+        game = new Game();
+    }
+
     @Test
     void at_first_players_are_each_at_zero() {
-        Game game = new Game();
-
         assertThat(game.scoring(), is("0 - 0"));
     }
 
     @Test
     void player_one_scores() {
-        Game game = new Game();
         game.playerOneScores();
 
         assertThat(game.scoring(), is("15 - 0"));
@@ -24,9 +29,16 @@ public class GameTest {
 
     @Test
     void player_two_scores() {
-        Game game = new Game();
         game.playerTwoScores();
 
         assertThat(game.scoring(), is("0 - 15"));
+    }
+
+    @Test
+    void player_one_score_two_times() {
+        game.playerOneScores();
+        game.playerOneScores();
+
+        assertThat(game.scoring(), is("30 - 0"));
     }
 }
