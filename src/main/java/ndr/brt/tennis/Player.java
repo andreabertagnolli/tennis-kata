@@ -5,7 +5,6 @@ import static ndr.brt.tennis.Score.LOVE;
 
 class Player {
     private int score = 0;
-    private boolean advantage = false;
 
     public void score() {
         score++;
@@ -13,14 +12,6 @@ class Player {
 
     public int points() {
         return Score.values()[score].points();
-    }
-
-    public boolean isForty() {
-        return Score.values()[score] == FORTY;
-    }
-
-    public boolean isAdvantage() {
-        return advantage;
     }
 
     public boolean overForty() {

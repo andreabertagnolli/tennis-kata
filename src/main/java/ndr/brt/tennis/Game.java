@@ -2,7 +2,6 @@ package ndr.brt.tennis;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiPredicate;
 
 import static ndr.brt.tennis.PlayerName.One;
 import static ndr.brt.tennis.PlayerName.Two;
@@ -10,19 +9,18 @@ import static ndr.brt.tennis.Results.*;
 
 public class Game {
 
-    private Map<PlayerName, Player> players = new HashMap<PlayerName, Player>() {{
-        put(One, new Player());
-        put(Two, new Player());
-    }};
+    private Map<PlayerName, Player> players = Map.of(
+            One, new Player(),
+            Two, new Player()
+    );
 
-    private Map<Results, String> results = new HashMap<Results, String>() {{
-        put(PlayerOneAdvantage, "Player One ADVANTAGE");
-        put(PlayerTwoAdvantage, "Player Two ADVANTAGE");
-        put(PlayerOneWins, "Player One WINS");
-        put(PlayerTwoWins, "Player Two WINS");
-        put(Deuce, "DEUCE");
-    }};
-
+    private Map<Results, String> results = Map.of(
+        PlayerOneAdvantage, "Player One ADVANTAGE",
+        PlayerTwoAdvantage, "Player Two ADVANTAGE",
+        PlayerOneWins, "Player One WINS",
+        PlayerTwoWins, "Player Two WINS",
+        Deuce, "DEUCE"
+    );
 
     public String scoring() {
         return results.entrySet().stream()

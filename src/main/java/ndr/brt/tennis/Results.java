@@ -3,12 +3,13 @@ package ndr.brt.tennis;
 import java.util.function.BiPredicate;
 
 public enum Results implements BiPredicate<Player, Player> {
+
     PlayerOneAdvantage(
-        (one, two) -> one.atLeastForty() && two.atLeastForty() && one.getScore() > two.getScore()
+        (one, two) -> one.atLeastForty() && two.atLeastForty() && one.getScore() == two.getScore() + 1
     ),
 
     PlayerTwoAdvantage(
-        (one, two) -> one.atLeastForty() && two.atLeastForty() && two.getScore() > one.getScore()
+        (one, two) -> one.atLeastForty() && two.atLeastForty() && two.getScore() == one.getScore() + 1
     ),
 
     PlayerOneWins(
@@ -22,7 +23,6 @@ public enum Results implements BiPredicate<Player, Player> {
     Deuce(
         (one, two) -> two.atLeastForty() && one.atLeastForty() && two.getScore() == one.getScore()
     );
-
 
     private final BiPredicate<Player, Player> predicate;
 
