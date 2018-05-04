@@ -21,4 +21,12 @@ public class GameTest {
 
         assertThat(game.scoring(), is("15 - 0"));
     }
+
+    @Test
+    void player_two_scores() {
+        Game game = new Game();
+        game.playerTwoScores();
+
+        assertThat(game.scoring(), is("0 - 15"));
+    }
 }
