@@ -3,6 +3,8 @@ package ndr.brt.tennis;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static ndr.brt.tennis.PlayerName.One;
+import static ndr.brt.tennis.PlayerName.Two;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -22,64 +24,91 @@ public class GameTest {
 
     @Test
     void player_one_scores() {
-        game.playerOneScores();
+        game.score(One);
 
         assertThat(game.scoring(), is("15 - 0"));
     }
 
     @Test
     void player_two_scores() {
-        game.playerTwoScores();
+        game.score(Two);
 
         assertThat(game.scoring(), is("0 - 15"));
     }
 
     @Test
     void player_one_score_two_times() {
-        game.playerOneScores();
-        game.playerOneScores();
+        game.score(One);
+        game.score(One);
 
         assertThat(game.scoring(), is("30 - 0"));
     }
 
     @Test
     void player_one_score_three_times() {
-        game.playerOneScores();
-        game.playerOneScores();
-        game.playerOneScores();
+        game.score(One);
+        game.score(One);
+        game.score(One);
 
         assertThat(game.scoring(), is("40 - 0"));
     }
 
     @Test
     void player_one_wins() {
-        game.playerOneScores();
-        game.playerOneScores();
-        game.playerOneScores();
-        game.playerOneScores();
+        game.score(One);
+        game.score(One);
+        game.score(One);
+        game.score(One);
 
         assertThat(game.scoring(), is("Player One WINS"));
     }
 
     @Test
     void player_two_wins() {
-        game.playerTwoScores();
-        game.playerTwoScores();
-        game.playerTwoScores();
-        game.playerTwoScores();
+        game.score(Two);
+        game.score(Two);
+        game.score(Two);
+        game.score(Two);
 
         assertThat(game.scoring(), is("Player Two WINS"));
     }
 
     @Test
     void deuce() {
-        game.playerOneScores();
-        game.playerOneScores();
-        game.playerOneScores();
-        game.playerTwoScores();
-        game.playerTwoScores();
-        game.playerTwoScores();
+        game.score(One);
+        game.score(One);
+        game.score(One);
+        game.score(Two);
+        game.score(Two);
+        game.score(Two);
 
         assertThat(game.scoring(), is("DEUCE"));
+    }
+
+    @Test
+    void player_one_advantage() {
+        game.score(One);
+        game.score(One);
+        game.score(One);
+        game.score(Two);
+        game.score(Two);
+        game.score(Two);
+        game.score(One);
+
+        assertThat(game.scoring(), is("Player One ADVANTAGE"));
+    }
+
+    @Test
+    void player_one_wins_after_advantage() {
+        game.score(One);
+        game.score(One);
+        game.score(One);
+        game.score(Two);
+        game.score(Two);
+        game.score(Two);
+        game.score(One);
+        game.score(One);
+
+        assertThat(game.scoring(), is("Player One WINS"));
     }
 }

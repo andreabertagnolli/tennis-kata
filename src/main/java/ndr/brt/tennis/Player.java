@@ -1,20 +1,41 @@
 package ndr.brt.tennis;
 
 import static ndr.brt.tennis.Score.FORTY;
+import static ndr.brt.tennis.Score.LOVE;
 
-public class Player {
-
-    private Score score = Score.LOVE;
+class Player {
+    private int score = 0;
+    private boolean advantage = false;
 
     public void score() {
-        score = Score.values()[score.ordinal() + 1];
+        score++;
     }
 
     public int points() {
-        return score.points();
+        return Score.values()[score].points();
     }
 
     public boolean isForty() {
-        return score == FORTY;
+        return Score.values()[score] == FORTY;
+    }
+
+    public boolean isAdvantage() {
+        return advantage;
+    }
+
+    public boolean overForty() {
+        return score > FORTY.ordinal();
+    }
+
+    public boolean atLeastForty() {
+        return score >= FORTY.ordinal();
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public boolean lessThanForty() {
+        return score < FORTY.ordinal();
     }
 }
