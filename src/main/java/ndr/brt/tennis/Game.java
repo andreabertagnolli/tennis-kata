@@ -1,18 +1,24 @@
 package ndr.brt.tennis;
 
+import static ndr.brt.tennis.Score.LOVE;
+
 public class Game {
-    private int playerOne = 0;
-    private int playerTwo = 0;
+    private Score playerOne = LOVE;
+    private Score playerTwo = LOVE;
 
     public String scoring() {
-        return String.format("%d - %d", playerOne, playerTwo);
+        return String.format("%d - %d", playerOne.points(), playerTwo.points());
     }
 
     public void playerOneScores() {
-        playerOne += 15;
+        int ordinal = playerOne.ordinal();
+        ordinal++;
+        playerOne = Score.values()[ordinal];
     }
 
     public void playerTwoScores() {
-        playerTwo = 15;
+        int ordinal = playerTwo.ordinal();
+        ordinal++;
+        playerTwo = Score.values()[ordinal];
     }
 }

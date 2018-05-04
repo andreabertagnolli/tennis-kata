@@ -41,4 +41,13 @@ public class GameTest {
 
         assertThat(game.scoring(), is("30 - 0"));
     }
+
+    @Test
+    void player_one_score_three_times() {
+        game.playerOneScores();
+        game.playerOneScores();
+        game.playerOneScores();
+
+        assertThat(game.scoring(), is("40 - 0"));
+    }
 }
