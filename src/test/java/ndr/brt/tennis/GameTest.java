@@ -22,32 +22,33 @@ public class GameTest {
 
     @Test
     void player_one_scores() {
-        game.playerOneScores();
+        game.playerOne().score();
 
         assertThat(game.scoring(), is("15 - 0"));
     }
 
     @Test
     void player_two_scores() {
-        game.playerTwoScores();
+        game.playerTwo().score();
 
         assertThat(game.scoring(), is("0 - 15"));
     }
 
     @Test
     void player_one_score_two_times() {
-        game.playerOneScores();
-        game.playerOneScores();
+        game.playerOne().score();
+        game.playerOne().score();
 
         assertThat(game.scoring(), is("30 - 0"));
     }
 
     @Test
     void player_one_score_three_times() {
-        game.playerOneScores();
-        game.playerOneScores();
-        game.playerOneScores();
+        game.playerOne().score();
+        game.playerOne().score();
+        game.playerOne().score();
 
         assertThat(game.scoring(), is("40 - 0"));
     }
+    
 }

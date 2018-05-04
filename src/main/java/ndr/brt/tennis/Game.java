@@ -15,4 +15,12 @@ public class Game {
     public void playerTwoScores() {
         playerTwo.score();
     }
+
+    public Player playerOne() {
+        return playerOne;
+    }
+
+    public Player playerTwo() {
+        return playerTwo;
+    }
 }
