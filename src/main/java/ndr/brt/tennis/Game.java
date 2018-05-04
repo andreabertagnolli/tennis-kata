@@ -3,13 +3,24 @@ package ndr.brt.tennis;
 public class Game {
     private Player playerOne = new Player();
     private Player playerTwo = new Player();
+    private String winner;
 
     public String scoring() {
-        return String.format("%d - %d", playerOne.points(), playerTwo.points());
+        if (winner != null) {
+            return winner;
+        }
+        else {
+            return String.format("%d - %d", playerOne.points(), playerTwo.points());
+        }
     }
 
     public void playerOneScores() {
-        playerOne.score();
+        if (playerOne.isForty()) {
+            winner = "Player One WINS";
+        }
+        else {
+            playerOne.score();
+        }
     }
 
     public void playerTwoScores() {

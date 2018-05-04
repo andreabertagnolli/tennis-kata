@@ -50,4 +50,14 @@ public class GameTest {
 
         assertThat(game.scoring(), is("40 - 0"));
     }
+
+    @Test
+    void player_one_wins() {
+        game.playerOneScores();
+        game.playerOneScores();
+        game.playerOneScores();
+        game.playerOneScores();
+
+        assertThat(game.scoring(), is("Player One WINS"));
+    }
 }
