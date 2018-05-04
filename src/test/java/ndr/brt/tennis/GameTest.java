@@ -111,4 +111,20 @@ public class GameTest {
 
         assertThat(game.scoring(), is("Player One WINS"));
     }
+
+    @Test
+    void player_two_wins_after_advantage() {
+        game.score(One);
+        game.score(One);
+        game.score(One);
+        game.score(Two);
+        game.score(Two);
+        game.score(Two);
+        game.score(One);
+        game.score(Two);
+        game.score(Two);
+        game.score(Two);
+
+        assertThat(game.scoring(), is("Player Two WINS"));
+    }
 }
