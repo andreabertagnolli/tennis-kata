@@ -1,7 +1,13 @@
 package ndr.brt.tennis;
 
 public class Game {
+    private String playerOne = "0";
+
     public String scoring() {
-        return "0 - 0";
+        return playerOne + " - 0";
+    }
+
+    public void playerOneScores() {
+        playerOne = "15";
     }
 }
