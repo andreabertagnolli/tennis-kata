@@ -6,6 +6,7 @@ import java.util.function.BiPredicate;
 
 import static ndr.brt.tennis.PlayerName.One;
 import static ndr.brt.tennis.PlayerName.Two;
+import static ndr.brt.tennis.Results.*;
 
 public class Game {
 
@@ -14,33 +15,17 @@ public class Game {
         put(Two, new Player());
     }};
 
-    private final PlayerPredicate playerOneAdvantage =
-            (one, two) -> one.atLeastForty() && two.atLeastForty() && one.getScore() > two.getScore();
-
-    private final PlayerPredicate playerTwoAdvantage =
-            (one, two) -> one.atLeastForty() && two.atLeastForty() && two.getScore() > one.getScore();
-
-    private final PlayerPredicate playerOneWins =
-            (one, two) -> one.overForty() && (two.lessThanForty() || one.getScore() > two.getScore() + 1);
-
-    private final PlayerPredicate playerTwoWins =
-            (one, two) -> two.overForty() && (one.lessThanForty() || two.getScore() > one.getScore() + 1);
-
-    private final PlayerPredicate deuce =
-            (one, two) -> two.atLeastForty() && one.atLeastForty() && two.getScore() == one.getScore();
-
-
-    private Map<PlayerPredicate, String> predicates = new HashMap<PlayerPredicate, String>() {{
-        put(playerOneAdvantage, "Player One ADVANTAGE");
-        put(playerTwoAdvantage, "Player Two ADVANTAGE");
-        put(playerOneWins, "Player One WINS");
-        put(playerTwoWins, "Player Two WINS");
-        put(deuce, "DEUCE");
+    private Map<Results, String> results = new HashMap<Results, String>() {{
+        put(PlayerOneAdvantage, "Player One ADVANTAGE");
+        put(PlayerTwoAdvantage, "Player Two ADVANTAGE");
+        put(PlayerOneWins, "Player One WINS");
+        put(PlayerTwoWins, "Player Two WINS");
+        put(Deuce, "DEUCE");
     }};
 
 
     public String scoring() {
-        return predicates.entrySet().stream()
+        return results.entrySet().stream()
                 .filter(it -> it.getKey().test(players.get(One), players.get(Two)))
                 .findAny()
                 .map(Map.Entry::getValue)
@@ -50,7 +35,5 @@ public class Game {
     public void score(PlayerName name) {
         players.get(name).score();
     }
-
-    private interface PlayerPredicate extends BiPredicate<Player, Player> {};
 
 }
