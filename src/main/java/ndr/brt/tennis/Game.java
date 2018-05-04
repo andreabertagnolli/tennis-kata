@@ -24,6 +24,11 @@ public class Game {
     }
 
     public void playerTwoScores() {
-        playerTwo.score();
+        if (playerTwo.isForty()) {
+            winner = "Player Two WINS";
+        }
+        else {
+            playerTwo.score();
+        }
     }
 }
